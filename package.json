@@ -1,0 +1,24 @@
+{
+  "name": "job-sequencer",
+  "version": "0.1.0",
+  "description": "Run strictly sequential jobs in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholaswmin/job-sequencer.git"
+  },
+  "keywords": [
+    "job",
+    "sequence",
+    "batch"
+  ],
+  "author": "@nicholaswmin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicholaswmin/job-sequencer/issues"
+  },
+  "homepage": "https://github.com/nicholaswmin/job-sequencer#readme"
+}
