@@ -100,7 +100,7 @@ Job Class
   ✓ returns the last emitted status
 
 Job Sequencer
-  ✓ when it instantiates
+  ✓ it instantiates
   when a Job is created
     ✓ creates a Running Job
     ✓ throws an exception when attempting to create a Running Job whilst another Running Job with the same name is still running
@@ -111,6 +111,12 @@ Job Sequencer
     ✓ clears the Running Job if the job is errored
     ✓ clears the Running Job if the job is aborted
     ✓ clears the Running Job if the job is stopped
+  when attempting to create a Job whilst another is running
+    ✓ throws an exception
+    ✓ creates the Job if the Job is done
+    ✓ creates the Job if the Job is errored
+    ✓ creates the Job if the Job is aborted
+    ✓ creates the Job if the Job is stopped
 ```
 
 ## License

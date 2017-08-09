@@ -14,7 +14,7 @@ describe('Job Sequencer', () => {
     jobSequencer = new JobSequencer()
   })
 
-  it('when it instantiates', () => {
+  it('it instantiates', () => {
     jobSequencer.should.be.ok
   })
 
@@ -125,6 +125,61 @@ describe('Job Sequencer', () => {
 
       queriedJob = jobSequencer.getRunningJobByName('foo-job')
       expect(queriedJob).to.not.be.ok
+    })
+  })
+
+  describe('when attempting to create a Job whilst another is running', () => {
+    it('throws an exception', () => {
+      const job = jobSequencer.createJob('foo-job', 10, { foo: 'bar' })
+
+      expect(jobSequencer.createJob.bind(
+        jobSequencer, 'foo-job',
+        10, { foo: 'bar' })
+      ).to.throw();
+    })
+
+    it('creates the Job if the Job is done', () => {
+      const job = jobSequencer.createJob('foo-job', 10, { foo: 'bar' })
+
+      job.success()
+
+      expect(jobSequencer.createJob.bind(
+        jobSequencer, 'foo-job',
+        10, { foo: 'bar' })
+      ).not.to.throw();
+    })
+
+    it('creates the Job if the Job is errored', () => {
+      const job = jobSequencer.createJob('foo-job', 10, { foo: 'bar' })
+
+      job.error()
+
+      expect(jobSequencer.createJob.bind(
+        jobSequencer, 'foo-job',
+        10, { foo: 'bar' })
+      ).not.to.throw();
+    })
+
+    it('creates the Job if the Job is aborted', () => {
+      const job = jobSequencer.createJob('foo-job', 10, { foo: 'bar' })
+
+      job.error()
+
+      expect(jobSequencer.createJob.bind(
+        jobSequencer, 'foo-job',
+        10, { foo: 'bar' })
+      ).not.to.throw();
+    })
+
+    it('creates the Job if the Job is stopped', () => {
+      const job = jobSequencer.createJob('foo-job', 10, { foo: 'bar' })
+
+      job.stop()
+
+      expect(jobSequencer.createJob.bind(
+        jobSequencer, 'foo-job',
+        10, { foo: 'bar' })
+      ).not.to.throw();
     })
   })
 })
