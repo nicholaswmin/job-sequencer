@@ -50,7 +50,7 @@ batchProcessor.on('load', successPayload => {
 
 batchProcessor.on('error', err => {
   console.log('Yikes. Something went wrong!', err)
-  // logs `{ foo: 'bar' }`
+  // logs `err`
 })
 
 batchProcessor.batchProcessFoo()
