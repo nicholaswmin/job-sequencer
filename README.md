@@ -1,5 +1,7 @@
 # Job sequencer
 
+[![Build Status](https://travis-ci.org/nicholaswmin/job-sequencer.svg?branch=master)](https://travis-ci.org/nicholaswmin/job-sequencer)
+
 Run long-running jobs, one at a time, whilst emitting W3C ProgressEvents
 
 ## Basic Usage
