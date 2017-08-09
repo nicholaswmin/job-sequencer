@@ -89,24 +89,11 @@ npm test
 ```
 
 ```bash
-Job Class
-  ✓ instantiates in the correct state
-  ✓ fires a loadstart event when start is called
-  ✓ fires a progress event when progress is called
-  ✓ fires an error event when error is called
-  ✓ fires an abort event when abort is called
-  ✓ fires a load event when success is called
-  ✓ fires a loadend event when stop is called
-  ✓ increments the loaded count by 1 when a progress event is emitted
-  ✓ includes the job name when emitting an event
-  ✓ includes any payload passed as arg. when emitting an event
-  ✓ returns the last emitted status
 
 Job Sequencer
   ✓ it instantiates
   when a Job is created
     ✓ creates a Running Job
-    ✓ throws an exception when attempting to create a Running Job whilst another Running Job with the same name is still running
     ✓ returns a Running Job by name if it exists
     ✓ returns true if a Running Job exists by name
     ✓ returns a list of all the last statuses emitted by still running, Running Jobs
@@ -120,6 +107,20 @@ Job Sequencer
     ✓ creates the Job if the Job is errored
     ✓ creates the Job if the Job is aborted
     ✓ creates the Job if the Job is stopped
+
+Job Class
+  ✓ instantiates in the correct state
+  ✓ fires a loadstart event when start is called
+  ✓ fires a progress event when progress is called
+  ✓ fires an error event when error is called
+  ✓ fires an abort event when abort is called
+  ✓ fires a load event when success is called
+  ✓ fires a loadend event when stop is called
+  ✓ increments the loaded count by 1 when a progress event is emitted
+  ✓ includes the job name when emitting an event
+  ✓ includes any payload passed as arg. when emitting an event
+  ✓ returns the last emitted status
+
 ```
 
 ## License

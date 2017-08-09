@@ -24,15 +24,6 @@ describe('Job Sequencer', () => {
       job.constructor.name.should.equal('Job')
     })
 
-    it('throws an exception when attempting to create a Running Job whilst another Running Job with the same name is still running', () => {
-      const job = jobSequencer.createJob('foo-job', 10, { foo: 'bar' })
-
-      expect(jobSequencer.createJob.bind(
-        jobSequencer, 'foo-job',
-        10, { foo: 'bar' })
-      ).to.throw();
-    })
-
     it('returns a Running Job by name if it exists', () => {
       const job = jobSequencer.createJob('foo-job', 10, { foo: 'bar' })
       const queriedJob = jobSequencer.getRunningJobByName('foo-job')
