@@ -2,7 +2,7 @@
 
 Run long-running jobs, one at a time, whilst emitting W3C ProgressEvents
 
-## Usage
+## Basic Usage
 
 Just inherit from `JobSequencer`
 
@@ -16,16 +16,22 @@ class LongRunningJobManager extends JobSequencer {
   }
 
   async batchProcessFoo() {
-    // Create a job with name 'batch-process-foo' that will tick
-    // `job.progress()` 5 times
-    const batchJob = this.createJob('batch-process-foo', 5);
-    batchJob.start()
-    batchJob.progress()
-    batchJob.progress()
-    batchJob.progress()
-    batchJob.progress()
-    batchJob.progress()
-    batchJob.success({ foo: 'bar' })
+    let batchJobFoo
+
+    try {
+      // Create a job with name 'batch-process-foo' that will tick
+      // `job.progress()` 5 times
+      batchJobFoo = this.createJob('batch-process-foo', 5);
+      batchJobFoo.start()
+      batchJobFoo.progress()
+      batchJobFoo.progress()
+      batchJobFoo.progress()
+      batchJobFoo.progress()
+      batchJobFoo.progress()
+      batchJobFoo.success({ foo: 'bar' })  
+    } catch (err) {
+      job.error(err)
+    }
   }
 }
 
@@ -43,6 +49,20 @@ batchProcessor.on('load', successPayload => {
 
 batchProcessor.batchProcessFoo()
 ```
+
+## Sequential Running
+
+You can only run *one job at a time*. If any of the following events are
+called:
+
+- `job.success()`
+- `job.error()`
+- `job.abort()`
+- `job.stop()`
+
+the `Job` is considered finished and it's ejected, thus allowing
+other `Job`'s with the same name to run.
+
 
 ## Events Emitted
 
