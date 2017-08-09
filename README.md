@@ -53,7 +53,6 @@ batchProcessor.on('error', err => {
   // logs `{ foo: 'bar' }`
 })
 
-
 batchProcessor.batchProcessFoo()
 ```
 
