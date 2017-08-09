@@ -65,6 +65,9 @@ called:
 the `Job` is considered finished and it's ejected, thus allowing
 other `Job`'s with the same name to run.
 
+Attempting to run another `Job` with the same name if the aforementioned methods
+have not been called on `Job` will result in an `Exception`
+
 
 ## Events Emitted
 
