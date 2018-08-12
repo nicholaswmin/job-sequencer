@@ -39,18 +39,23 @@ class LongRunningJobManager extends JobSequencer {
 
 const batchProcessor = new LongRunningJobManager()
 
-batchProcessor.on('progress', status => {
-  console.log(status)
-})
-
-batchProcessor.on('load', successPayload => {
-  console.log('done!', successPayload)
-  // logs `{ foo: 'bar' }`
-})
-
-batchProcessor.on('error', err => {
-  console.log('Yikes. Something went wrong!', err)
-  // logs `err`
+batchProcessor.on('status', status => {
+  switch (status.type) {
+    case 'loadstart':
+      console.log('started')
+      break;
+    case 'progress':
+      console.log(status.progress) // `{ total: 5, loaded: 2 }`.. etc
+      break;
+    case 'load':
+      console.log(status.payload) // `{ foo: bar }`
+      break;
+    case 'error':
+      console.log(status.payload) // logs any potential error
+      break;
+    default:
+      // do nothing
+  }
 })
 
 batchProcessor.batchProcessFoo()
